@@ -15,4 +15,4 @@ jobs:
           node-version: '14'
       - run: npm i
       - run: npm run init
-      - run: npm run tpl 10004
+      - run: npm run tpl 10029
