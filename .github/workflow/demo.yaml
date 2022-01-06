@@ -1,0 +1,15 @@
+name: GitHub Actions Demo
+on: [push]
+  branchs:
+    - dev
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: '14'
+      - run: npm i
+      - run: npm run init
+      - run: npm run tpl 10004
