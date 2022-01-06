@@ -1,0 +1,328 @@
+<template>
+  <div id="usdt-detail" :style="{'marginTop': !!$route.query.source && 0}">
+    <lheader v-if="!$route.query.source" :title="title" :goback="true"></lheader>
+    <img class="section-one" src="./assets/banner_img.png" alt="">
+    <div class="section2" v-if="note.length">
+      <h2 class="title"><span>{{$t('星级晋升机制')}}</span></h2>
+      <div class="section2-main">
+        <div>
+          <img src="./assets/img_waikuang.png" alt="">
+          <h2>{{$t('四品官员')}}</h2>
+          <p>投注{{ note[0].money.valid_bet }}W+ 月存{{ note[0].money.deposite_money }}W+</p>
+        </div>
+        <img src="./assets/img_arrow.png" alt="">
+        <div>
+          <img src="./assets/img_waikuang.png" alt="">
+          <h2>{{$t('三品官员')}}</h2>
+          <p>投注{{ note[1].money.valid_bet }}W+ 月存{{ note[1].money.deposite_money }}W+</p>
+        </div>
+        <img src="./assets/img_arrow.png" alt="">
+        <div>
+          <img src="./assets/img_waikuang.png" alt="">
+          <h2>{{$t('二品官员')}}</h2>
+          <p>投注{{ note[2].money.valid_bet }}W+ 月存{{ note[2].money.deposite_money }}W+</p>
+        </div>
+        <img src="./assets/img_arrow.png" alt="">
+        <div>
+          <img src="./assets/img_waikuang.png" alt="">
+          <h2>{{$t('一品官员')}}</h2>
+          <p>投注{{ note[3].money.valid_bet }}W+ 月存{{ note[3].money.deposite_money }}W+</p>
+        </div>
+        <img src="./assets/img_arrow.png" alt="">
+        <div>
+          <img src="./assets/img_waikuang.png" alt="">
+          <h2>{{$t('乾隆大帝')}}</h2>
+          <p>投注{{ note[4].money.valid_bet }}W+ 月存{{ note[4].money.deposite_money }}W+</p>
+        </div>
+      </div>
+    </div>
+    <div class="section3">
+      <div class="main">
+        <h2 class="title"><span>{{$t('星级特权福利')}}</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>{{$t('品职')}}</th>
+              <th>{{$t('酒店')}}</th>
+              <th>{{$t('美女')}}</th>
+              <th>{{$t('年龄')}}</th>
+              <th>{{$t('服务周期')}}</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr
+            v-for="(item, index) in list"
+            :key="index"
+          >
+            <td>{{ item.starClass }}</td>
+            <td>{{ item.hotel }}</td>
+            <td>{{ item.beauty }}</td>
+            <td>{{ item.age }}</td>
+            <td>{{ item.cycle }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <p>{{$t('温馨提示')}}</p>
+        <p>① 会员提前联系客服专员，选取美女服务，只针对有机场直达的城市，AA集团承担交通服务费用；</p>
+        <p>② 相关隐私请参考当地法律，AA集团不干涉，为避免文字差异，AA集团保留最终解释权</p>
+      </div>
+    </div>
+    <div class="section4">
+      <div class="main">
+        <h2 class="title"><span>{{$t('活动规则')}}</span></h2>
+        <div class="bot-tips">
+          <p><img src="./assets/img@2x.png" alt=""><span>{{$t('本活动所有二星及以上会员均可享受')}}</span></p>
+          <p><img src="./assets/img@2x.png" alt=""><span>{{$t('会员需要提前联系客服')}}</span></p>
+          <p><img src="./assets/img@2x.png" alt=""><span>{{$t('只针对有机场直达的城市')}}</span></p>
+          <p><img src="./assets/img@2x.png" alt=""><span>{{$t('本存款金额只限线下存款')}}</span></p>
+          <p><img src="./assets/img@2x.png" alt=""><span>{{$t('本活动数据按月累计')}}</span></p>
+          <p><img src="./assets/img@2x.png" alt=""><span>{{$t('本优惠活动只限娱乐性质的会员参加')}}</span></p>
+          <p><img src="./assets/img@2x.png" alt=""><span>{{$t('关于本活动本公司拥有最终解释权')}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<style lang="less" scoped>
+  #usdt-detail{
+    margin-top: 85px;
+    .section-one{
+      display: block;
+      width: 100%;
+    }
+    .title{
+      font-size: 40px;
+      color: #fff;
+      margin-bottom: 60px;
+      text-align: center;
+      span{
+        position: relative;
+        &:before,&:after{
+          content: '';
+          position: absolute;
+          width: 184px;
+          height: 1px;
+          background-color: #333;
+          top: 50%;
+        }
+        &:before{
+          right: calc(100% + 20px);
+        }
+        &:after{
+          left: calc(100% + 20px);
+        }
+      }
+    }
+    .section2{
+      padding-top: 46px;
+      width: 100%;
+      background: linear-gradient(180deg, #261635 0%, #1A1346 100%);
+      margin-top: -210px;
+      position: relative;
+      z-index: 5;
+      .section2-main{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 0 40px;
+        img{
+          width: 60px;
+          margin-bottom: 60px;
+        }
+        div{
+          position: relative;
+          margin-bottom: 60px;
+          img{
+            width: 180px;
+            margin-bottom: 0;
+          }
+          h2{
+            position: absolute;
+            top: 0;
+            left: 24px;
+            font-size: 36px;
+            color: #fff;
+            height: 98px;
+            line-height: 98px;
+            padding: 0;
+            margin: 0;
+          }
+          p{
+            position: absolute;
+            font-size: 22px;
+            color: #fff;
+            top: 106px;
+            line-height: 24px;
+            width: 170px;
+            left: 10px;
+            text-align: center;
+          }
+        }
+      }
+    }
+    .section3{
+      background-color: #000;
+      padding: 80px 0 75px;
+      .main{
+        padding: 0 40px;
+        p{
+          font-size: 24px;
+          color: #999;
+          line-height: 36px;
+          text-align: left;
+        }
+      }
+      table{
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        background: #231537;
+        margin-bottom: 40px;
+        text-align: center;
+
+        thead{
+          tr{
+            height: 70px;
+            background: linear-gradient(120deg, #4634E0 0%, #6A05CA 100%);
+            th{
+              color: #fff;
+              font-size: 24px;
+            }
+          }
+        }
+
+        tbody{
+          border: 2px solid #4634E0;
+          border-top: 0;
+          box-sizing: border-box;
+          tr:nth-child(even){
+            background: rgba(0,0,0,.6);
+          }
+          tr:nth-child(odd){
+            background: #231537;
+          }
+          td{
+            height: 65px;
+            font-size: 22px;
+            color: #fff;
+          }
+        }
+
+      }
+    }
+    .section4{
+      height: 880px;
+      padding-top: 55px;
+      background: url("./assets/bg.png") center top no-repeat;
+      background-size: 100% auto;
+      .main{
+        padding: 0 0 0 36px;
+        .bot-tips{
+          counter-reset: count;
+          p{
+            display: flex;
+            align-items: flex-start;
+            font-size: 28px;
+            color: #fff;
+            line-height: 42px;
+            justify-content: flex-start;
+            text-align: left;
+            margin-bottom: 27px;
+            position: relative;
+            img{
+              fill: #5514BF;
+              width: 40px;
+              margin-top: 2px;
+            }
+            &:before{
+              content: counters(count,"") " ";
+              counter-increment: count;
+              position: absolute;
+              left: 12px;
+              font-size: 28px;
+              top: -2px;
+            }
+            span{
+              flex: 1;
+              margin-left: 9px;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+<script>
+import Lheader from "@/components/l-header";
+import { specialdetail } from "@/api/activity";
+export default {
+  data() {
+    return {
+      title: this.$t('美女派送'),
+      merchant_no: process.env.VUE_APP_MERCHANT_NO, //商户号
+      id: 0, //活动id
+      note: [], //规则
+      list: [
+        {
+          starClass: this.$t('四品官员'),
+          hotel: this.$t('三星酒店'),
+          beauty: this.$t('模特'),
+          age: "18-25",
+          cycle: "1次/6个月"
+        },
+        {
+          starClass: this.$t('三品官员'),
+          hotel: this.$t('四星酒店'),
+          beauty: this.$t('模特'),
+          age: "18-25",
+          cycle: "1次/3个月"
+        },
+        {
+          starClass: this.$t('二品官员'),
+          hotel: this.$t('五星酒店'),
+          beauty: this.$t('模特,空姐,学生'),
+          age: "18-25",
+          cycle: "1次/1个月"
+        },
+        {
+          starClass: this.$t('一品官员'),
+          hotel: this.$t('五星豪华'),
+          beauty: this.$t('二线明星'),
+          age: "18-25",
+          cycle: "1次/1个月"
+        },
+        {
+          starClass: this.$t('乾隆大帝'),
+          hotel: this.$t('顶级豪华'),
+          beauty: this.$t('二线明星'),
+          age: "18-25",
+          cycle: "2次/1个月"
+        }
+      ]
+    };
+  },
+  components: {
+    Lheader
+  },
+  methods: {
+    //获取优惠详情
+    getDetail() {
+      specialdetail({
+        merchant_no: this.merchant_no,
+        id: this.id
+      }).then(res => {
+        this.note = res.data.data.condition_setting;
+      });
+    }
+  },
+  created() {
+    if (this.$route.query.token) {
+      localStorage.setItem("token", this.$route.query.token);
+    }
+     
+    this.id = this.$route.query.id;
+    this.getDetail();
+  }
+};
+</script>

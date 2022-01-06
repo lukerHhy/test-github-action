@@ -1,0 +1,147 @@
+#welfare {
+  background-color: #0D006E;
+  /deep/.nav-center span {
+    color: #fff;
+  }
+  .content {
+    width: 100%;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    margin-top: @main-top;
+    padding-top: 220px;
+    background-size: cover;      
+    /deep/.van-tabs .van-tabs__nav .van-tab--active {
+      color: #fff !important;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+    }
+    /deep/.van-tabs .van-tabs__nav .van-tab {
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #DCE0FF !important;
+    }
+    /deep/.van-tabs .van-tabs__nav {                  
+      background-color: #0D006E !important;      
+      padding-bottom: 0;
+    } 
+    /deep/.van-tabs .van-tabs__wrap {  
+      z-index: 2;    
+      border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      position: fixed;
+      top:  @main-top;
+      margin-top: 120px;
+      left: 0;
+      height: 91px;
+      line-height: 91px;
+      right: 0;
+    }
+    /deep/.van-tabs .van-tabs__nav .van-tab {
+      height: 90px;
+      line-height: 90px;
+    }
+    /deep/.van-tabs__line {
+      height: 4px;
+      width: 100px;
+      background: #06D178 !important;
+      bottom: 0px;
+    }
+    .content-header {
+      z-index: 1;
+      background-color: #0D006E;  
+      position: fixed;
+      left: 0;
+      right: 0;
+      top:  @main-top;      
+      color: #fff;
+      padding: 40px 20px 40px 30px;
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 20px;        
+        font-size: 32px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+      }
+      img {
+        vertical-align: middle;
+        margin-top: -10px;
+        width: 54px;
+        height: 54px;
+      }
+      .header-icon {
+        color: rgba(51, 51, 51, 0.6) !important;
+        font-size:36px;
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        margin-top: -18px;        
+      }
+    }
+    .tab-info {    
+      padding: 35px 25px 0;  
+      .info-header {
+        padding-bottom: 40px;
+        .info-header-title {
+          text-align: center;
+          font-size: 32px;
+          line-height: 50px;
+          font-family: PingFangSC-Medium, PingFang SC;          
+          font-weight: 500;
+          color: #FFFFFF;
+        }
+        .info-header-desc {
+          padding: 0 30px;
+          margin-top: 25px;
+          margin-bottom: 10px;
+          text-align: left;
+          font-size: 24px;
+          line-height: 33px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #DCE0FF;
+          position: relative;
+          &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background-color: #06D178;;
+          }
+        }
+      }
+      .info-item {
+        .item-img {
+          width: 100%;
+        }
+        .item-title {
+          text-align: center;
+          font-size: 32px;
+          line-height: 50px;        
+          font-family: "DIN Alternate", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", "Microsoft Yahei", sans-serif, arial;
+          font-weight: 500;
+          color: #FFFFFF;
+        }
+        .item-desc {
+          margin-top: 10px;
+          margin-bottom: 10px;
+          padding: 0 30px;
+          text-align: center;
+          font-size: 24px;
+          line-height: 32px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #DCE0FF;
+        }
+      } 
+    }
+  }
+  .no-header {
+    padding-top: 0;
+    margin-top:0;
+  }
+}

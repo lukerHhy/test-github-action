@@ -1,0 +1,264 @@
+<template>
+  <div class="container agBankBind isAgent">
+    <lheader rightName :title="title" @rightClick="goKefu"></lheader>
+    <div class="main">
+      <!-- 银行卡 -->
+      <template v-if="bankList.length > 0">
+        <div class="flex">
+          <div
+              :class="['bankList', item.icon_code]"
+              v-for="(item, index) in bankList"
+              :key="index"
+              :style="{
+              backgroundImage:
+                bankCodeArr.indexOf(item.icon_code) == -1
+                  ? `url(${defaultImg})`
+                  : `url(${require(`@assets/img3_0/bank-icon/bank-bg/${item.icon_code}@2x.png`)})`,
+            }"
+          >
+            <div class="bank-name">
+              <BankIcon :bankCode="item.icon_code" />
+              {{ item.bank_name }}
+            </div>
+            <p class="bank-account">{{ item.card_no | cardFilter }}</p>
+          </div>
+
+          <div class="tisp">
+            {{$t('温馨提示')}}：
+            {{$t('每个会员最多可绑定4张银行卡，每张银行卡必须保持真实姓名一致，以及必须是真实独立有效的银行卡，每张银行卡只能绑定一次。如果会员绑定的银行卡和本人真实银行卡不符，那么造成的资金损失我们一律不负责。')}}
+          </div>
+          <button
+              style="margin-top: 0.8rem"
+              class="addBank"
+              type="button"
+              @click="agentAddBank"
+              v-if="!isLoading && bankList.length < 4"
+          >
+{{$t('新增银行卡')}}
+          </button>
+        </div>
+      </template>
+      <template v-if="!isLoading && bankList.length == 0">
+        <div class="empty aagames-button-box" style="padding: 0.3rem">
+          <button
+              class="addBank"
+              type="button"
+              @click="agentAddBank"
+          >
+{{$t('新增银行卡')}}
+          </button>
+          <div class="tisp" style="margin-top: 0.2rem;">
+           <div> {{$t('温馨提示')}}:</div>
+            <div>{{$t('您最多可绑定4张银行卡，每张银行卡必须保持真实姓名一致，以及必须是真实独立有效的银行卡，每张银行卡只能绑定一次。如果会员绑定的银行卡和本人真实银行卡不符，那么造成的资金损失我们一律不负责。')}}</div>
+          </div>
+        </div>
+
+      </template>
+    </div>
+    <loading :isShow="isLoading"></loading>
+  </div>
+</template>
+
+<script>
+import Lheader from '@/components/l-header'
+import Loading from '@/components/loading'
+import { bankcardlist } from '@/api/agent'
+import BankIcon from '@/components/bank-icon'
+
+export default {
+  name: 'discountCore',
+  components: {
+    Loading,
+    Lheader,
+    BankIcon,
+  },
+  data() {
+    return {
+      title: this.$t('绑定银行卡'),
+      isLoading: false,
+      bankList: [],
+      banklength:0,
+      defaultImg: require('@assets/img3_0/deposit/bg_default@2x.png'),
+      bankCodeArr: [
+        'ABC',
+        'BCCB',
+        'BOC',
+        'BOCOM',
+        'BOS',
+        'CCB',
+        'CEB',
+        'CGB',
+        'CIB',
+        'CMB',
+        'CMBC',
+        'ECITIC',
+        'HXB',
+        'HZCBC',
+        'ICBC',
+        'NBCBC',
+        'PAB',
+        'PSBC',
+        'SPDB',
+      ],
+    }
+  },
+
+  methods: {
+    // 代理新增银行卡
+    agentAddBank() {
+      this.$router.push({ path: '/agAddBankBind' })
+    },
+    goKefu() {
+      this.$openKefu()
+      this.$store.dispatch('global/setPopShow', { status: false })
+    },
+    getIcon(name) {
+      // let  url = require(`@assets/img/memberCenter/bank-icon/${name}.png`);
+      let url = ''
+      return url
+    },
+    addBankCk() {
+      if (this.bankList.length === 0) {
+        this.$router.push('agAddBankBind')
+      } else {
+        this.$router.push({
+          path: '/agAddBankBind',
+          query: {
+            name: this.bankList[0].name,
+          },
+        })
+      }
+    },
+  },
+  filters: {
+    cardFilter(val) {
+      let text = ''
+      // val.substring(val.length - 4)
+      const reg = new RegExp(val.substring(0, val.length - 4), 'g')
+      for (let i = 0; i < val.length - 4; i++) {
+        text += '*'
+      }
+      text += '  ' + val.substring(val.length - 4)
+      return text
+    },
+  },
+  created() {
+    let that = this;
+    try {
+      let scrollY = document.getElementsByClassName('container')[0].offsetTop
+      window.scrollTo(0, scrollY)
+    } catch (error) {}
+    that.isLoading = true
+    bankcardlist({ access_token: window.localStorage.agToken })
+        .then((res) => {
+          if (res.data.code === 0) {
+            that.bankList = res.data.data
+            that.banklength = res.data.data.length
+          }
+        })
+        .finally(() => {
+          that.isLoading = false
+        })
+  },
+}
+</script>
+
+<style scoped lang="less">
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #191919;
+  color: #333;
+  .main {
+    margin: 1.5rem 0.4rem 0;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+    .bankList {
+      position: relative;
+      width: 691px;
+      margin-bottom: @space-gap;
+      border-radius: 8px;
+      height: 220px;
+      padding: 50px;
+      color: #fff;
+      background-size: 100%;
+      overflow: hidden;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &.red {
+        background-color: #c55055;
+      }
+      &.blue {
+        background-color: #1965a3;
+      }
+      &.green {
+        background-color: #018c77;
+      }
+      &.orange {
+        background-color: #bf4129;
+      }
+      &.purple {
+        background-color: #59236b;
+      }
+      .bank-name {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 32px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        /deep/ .van-image {
+          // background-color: #0e0e0e;
+          // border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          margin: -10px 20px 0 -10px;
+        }
+      }
+      .bank-account {
+        font-size: 48px;
+        font-weight: 500;
+      }
+      .icon-bg {
+        width: 260px;
+        height: 260px;
+        position: absolute;
+        right: -20px;
+        top: -20px;
+        opacity: 0.4;
+        // background-color: transparent;
+      }
+    }
+    .tisp {
+      font-size: 24px;
+      font-weight: 400;
+      color: #ccc;
+      line-height: 48px;
+    }
+    .aagames-button-box {
+      margin-top: @margin-20;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+    }
+    .addBank{
+      width: 100%;
+      height: 1.33333rem;
+      background-color: #C8A77F;
+      border: none;
+      border-radius: 0.10667rem;
+      color: #1E1E1E;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.33333rem;
+      font-size: 0.42667rem;
+    }
+  }
+  .empty.aagames-button-box {
+    position: relative;
+  }
+}
+</style>

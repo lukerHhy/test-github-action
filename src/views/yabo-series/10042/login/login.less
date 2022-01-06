@@ -1,0 +1,294 @@
+.container {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: relative;
+  z-index: 2;
+  video::-webkit-media-controls-start-playback-button {
+    display: none;
+  }
+  .con-header{
+    height: 88px;
+    background: #18926C;
+    display: flex;
+    line-height: 88px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      height: 80%;
+    }
+    .van-icon-cross{
+      position: absolute;
+      color: #41B590;
+      font-size: 28px;
+      right: 40px;
+      top: 24px;
+    }
+  }
+
+  /deep/.aagames-nav-bar{
+    background:transparent;
+  }
+  .main {
+    display: table;
+    table-layout: fixed;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 548px;
+    margin: 0 auto;
+    left: 40px;
+    top:540px;
+    flex: 1;
+    padding: 62px 0 0;
+    background-color:transparent!important;
+    z-index: 4;
+    .home{
+      border-radius: 20px 0 0 20px;
+      overflow: hidden;
+      display: table-cell;
+    }
+    /deep/.aagames-form{
+      #g-code .input input{
+        padding-left: 0;
+      }
+      .right-button{
+        right:0 !important;
+        background: none!important;
+        height: 40px!important;
+        line-height: 40px!important;
+         top:25px !important;
+        margin-top: 0!important;
+      }
+    }
+  }
+}
+
+
+/deep/ .van-tabs {
+
+  .van-tabs__nav {
+    background: none;
+    background-color: transparent;
+  }
+  .van-ellipsis {
+    font-weight: 700;
+    font-size: 30px;
+    color: #888888;
+  }
+  .van-tab{
+    font-size: 28px;
+    color: rgba(102, 102, 102, .8)!important;
+    &:nth-child(3){
+      overflow: visible;
+    }
+  }
+  .van-tab--active {
+    font-size: 32px;
+    .van-tab__text--ellipsis {
+      color: #666;
+      overflow: visible;
+    }
+  }
+  .van-tabs__wrap{
+    border-bottom: 0!important;
+  }
+
+}
+
+.fill {
+  margin-top: 0;
+  /*background-color: #ffffff;*/
+}
+.aagames-form {
+  position: relative;
+  padding:0;
+  margin-top: 20px;
+
+  /deep/ .input {
+    height: 90px;
+    color: #999999;
+    background: rgba(255,255,255)!important;
+    border: 2px solid #aaa;
+    .img {
+      width: 40px;
+      margin-left: 26px;
+    }
+    .phone{
+      position: relative;
+    }
+    > input {
+      background: none!important;
+      padding: 0 26px;
+      color: #333;
+      &::placeholder{
+        color: #bbb;
+      }
+    }
+    .areaNum {
+      font-size: 24px!important;
+      font-weight: 500;
+      color: #666!important;
+      padding: 0;
+      text-align: center;
+      border-color: rgba(0,0,0,.2);
+      white-space: nowrap;
+      margin-left: 10px;
+    }
+    .xiala {
+      position: relative;
+      top: 0;
+      width: 22px;
+      height: auto;
+    }
+    &:after {
+      background-color: #FFFFFF;
+      opacity: 0.06;
+    }
+    &:last-child{
+      margin-bottom: 0!important;
+    }
+  }
+}
+.function {
+  .aagames-button-box {
+    margin-bottom: 0;
+    padding: 0;
+    .register{
+      margin-top: 20px;
+    }
+    .sign-in {
+      margin-top: 20px;
+      border-radius: 90px;
+      height: 90px;
+      background: @bg-gradient-color;
+    }
+    .line{
+      margin-top: 40px;
+      border: 2px solid @primary-color;
+    }
+    .dark {
+      margin-top: 40px;
+      background: #353435;
+      color:#fff;
+      border:0;
+    }
+  }
+  .funDiv {
+    margin-top: 20px!important;
+    color: #666;
+    font-size: 20px;
+    text-align: left;
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+      color: #666;
+    }
+    .rem-pass{
+      display: flex;
+      align-items: center;
+      .van-icon{
+        font-size: 28px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+.customer {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .cut-up {
+    width: 2px;
+    height: 40px;
+    background: rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    margin: 0 20px;
+  }
+
+  .wait, .kefu {
+    height: 42px;
+    font-size: 28px;
+    font-weight: 400;
+    color: #666;
+    line-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 42px;
+      height: 42px;
+      margin-right: 20px;
+    }
+  }
+}
+
+.clearfix:after {
+  content: "020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix {
+  /* 触发 hasLayout */
+  zoom: 1;
+}
+.home-regist-btn{
+  width: 100px;
+  background: rgba(0,0,0,.5);
+  text-align: center;
+  border-radius: 0 20px 20px 0;
+  vertical-align: middle;
+  display: table-cell;
+  img{
+    width: 52px;
+  }
+  span{
+    font-size: 28px;
+    color: #fff;
+    display: block;
+    padding: 0 30px;
+    line-height: 50px;
+  }
+}
+.bgvideo{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+video::-webkit-media-controls-panel {
+   display: none!important;
+   -webkit-appearance: none;
+ }
+
+video::--webkit-media-controls-play-button {
+  display: none!important;
+  -webkit-appearance: none;
+}
+
+
+video::-webkit-media-controls-start-playback-button {
+  display: none!important;
+  -webkit-appearance: none;
+}
+.bet-log{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28px;
+  color: @primary-color;
+  margin-top: 38px;
+}

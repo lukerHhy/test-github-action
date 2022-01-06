@@ -1,0 +1,23 @@
+// 重写dialog
+.van-dialog {
+  width: 90%;
+  border-radius: 28px;
+  padding: 0 40px;
+  background-color: @bg-color;
+  overflow: initial;
+  .van-dialog__header {
+    line-height: 80px;
+    color: red !important;
+  }
+
+  .van-dialog__footer--buttons {
+    justify-content: space-between;
+    .van-button {
+      flex: none;
+      width: 290px !important;
+    }
+  }
+  /deep/.van-dialog__confirm {
+    border: 0 !important;
+  }
+}
