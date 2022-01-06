@@ -14,6 +14,7 @@ jobs:
       - name: enter workspace
         run: |
           cd ${{ github.workspace }}
+      - run: ls
       - run: npm i
       - run: npm run init
       - run: npm run tpl 10004
