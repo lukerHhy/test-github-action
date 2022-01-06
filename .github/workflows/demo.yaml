@@ -11,6 +11,9 @@ jobs:
         uses: actions/setup-node@v2.5.1
         with:
           node-version: '14'
+      - name: enter workspace
+        run: |
+          cd ${{ github.workspace }}
       - run: npm i
       - run: npm run init
       - run: npm run tpl 10004
